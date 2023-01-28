@@ -1,0 +1,68 @@
+@use "sass:color";
+
+.search {
+  $height: 80px;
+  position: relative;
+  height: 50px;
+
+  .input {
+    position: relative;
+    width: 240px;
+    height: 50px;
+    padding: 5px calc($height / 2) 5px calc($height / 2);
+
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 50px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    transition: width 0.3s;
+    transition-delay: 0.1s;
+
+    &::placeholder {
+      color: rgba(22, 22, 22, 0.4);
+    }
+  }
+  &.focus .input {
+    width: 400px;
+  }
+
+  .bottomLine {
+    position: absolute;
+    bottom: 0;
+    left: 51%;
+    right: 50%;
+    height: 3px;
+    overflow: hidden;
+    background: rgb(12, 189, 12);
+    transition: left 0.4s, right 0.4s;
+  }
+
+  &.focus .input ~ .bottomLine {
+    left: 0;
+    right: 0;
+  }
+
+  .searchIcon {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .close {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,41 @@
+@use "sass:color";
+
+.header {
+  $height: 80px;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 20;
+
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: color.adjust(#ddd, $blackness: 20%);
+  height: $height + 20px;
+
+  transform: translateY(0);
+  transition: transform 0.3s;
+
+  &.scrollDown {
+    transform: translateY(-100%);
+  }
+
+  .logo {
+    position: relative;
+    padding-left: $height + 5px;
+    height: $height;
+
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $height;
+      height: $height;
+      object-fit: contain;
+      transform-origin: center;
+    }
+  }
+}

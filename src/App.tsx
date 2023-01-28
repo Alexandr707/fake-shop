@@ -1,34 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
+
+import { fetchProducts } from "./redux/productsSlice";
+import { RootState, useAppDispatch } from "./redux/store";
+
+import SelectCategorie from "./components/SelectCategorie/SelectCategorie";
+import Product from "./components/Product/Product";
+import Header from "./components/Header/Header";
+import ProductLoader from "./components/Product/ProductsLoader";
+import { useScrollDown } from "./hooks/useScrollDown";
+import "./App.scss";
+import { initCart } from "./redux/cartslice";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isScrollDown, onScrollHandler] = useScrollDown();
+  const dispatch = useAppDispatch();
+  const { products, cart, categorie, search } = useSelector(
+    (state: RootState) => state
+  );
+
+  let filtredProd =
+    search.value.length > 0
+      ? products.products.filter((el) =>
+          el.title.toLowerCase().includes(search.value.toLowerCase())
+        )
+      : products.products;
+
+  useEffect(() => {
+    dispatch(fetchProducts(import.meta.env.VITE_STOREURL + "/products"));
+    dispatch(initCart());
+
+    document.addEventListener("scroll", onScrollHandler);
+
+    return () => {
+      document.removeEventListener("scroll", onScrollHandler);
+    };
+  }, []);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <Header />
+
+      <div className={clsx("sideBar", isScrollDown && "scrolldown")}>
+        <SelectCategorie />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main className="main">
+        <div className="app__wrapper">
+          {products.status === "loading" &&
+            new Array(6).fill("").map((al, i) => <ProductLoader key={i} />)}
+          {products.status === "loaded" &&
+            filtredProd.map((p) => <Product key={p.id} {...p} />)}
+        </div>
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

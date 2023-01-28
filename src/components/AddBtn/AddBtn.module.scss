@@ -1,0 +1,76 @@
+.btnContainer {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 10px;
+
+  .btn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: #0163fa;
+
+    .btnText {
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate((50%, -50%));
+      transition: right 0.3s;
+    }
+  }
+  &.selected .btn .btnText {
+    right: 40px;
+  }
+
+  .countContainer {
+    display: flex;
+    justify-content: space-between;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+
+    font-size: 1rem;
+
+    background-color: #ddd;
+    border-radius: 10px;
+    border: 2px solid #0163fa;
+  }
+  .quantity {
+    margin: 0;
+    color: #000;
+    font-size: 1.2rem;
+  }
+  .iconBtn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    color: #0163fa;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background 0.3s;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($color: #0163fa, $alpha: 0.3);
+    }
+
+    &.disabled {
+      color: rgba(22, 22, 22, 0.4);
+      pointer-events: none;
+      &:hover {
+        background-color: rgba(22, 22, 22, 0.3);
+      }
+    }
+  }
+}

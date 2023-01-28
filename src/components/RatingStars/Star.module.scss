@@ -1,0 +1,34 @@
+.star {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    // color: #ffa500;
+
+    &.starFill {
+      rect {
+        fill: #ffa500;
+      }
+    }
+
+    &.starContur {
+      $strokeWidth: 3px;
+      left: $strokeWidth;
+      top: $strokeWidth;
+      width: calc(100% - $strokeWidth * 2);
+      height: calc(100% - $strokeWidth * 2);
+
+      stroke-width: $strokeWidth;
+      stroke: #000;
+      fill: none;
+      overflow: hidden;
+    }
+  }
+}
