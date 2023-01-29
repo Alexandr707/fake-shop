@@ -4,7 +4,9 @@
   height: 50px;
   line-height: 50px;
   border-radius: 10px;
-
+  & * {
+    user-select: none;
+  }
   .btn {
     position: relative;
     width: 100%;
@@ -13,6 +15,7 @@
     font-weight: 600;
     border-radius: 10px;
     background-color: #0163fa;
+    cursor: pointer;
 
     .btnText {
       position: absolute;

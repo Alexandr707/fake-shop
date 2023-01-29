@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { ProductData } from "../../@types";
 import { RootState } from "../../redux/store";
 import AddBtn from "../AddBtn/AddBtn";
@@ -22,12 +23,14 @@ function Product({
   return (
     <div className={st.product}>
       <div className={st.productWrap}>
-        <div className={st.image}>
-          <img src={image} alt={title} />
-        </div>
-        <h3 className={st.title} title={title}>
-          {title}
-        </h3>
+        <Link to={`/product/${id}`}>
+          <div className={st.image}>
+            <img src={image} alt={title} />
+          </div>
+          <h3 className={st.title} title={title}>
+            {title}
+          </h3>
+        </Link>
         <p className={st.descr}>{description}</p>
         <div className={st.price}>
           Цена: <span className={st.cost}>{price}&nbsp;$</span>
