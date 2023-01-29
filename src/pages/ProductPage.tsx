@@ -3,11 +3,10 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { ProductData } from "../@types";
 import { AddBtn, RatingStars } from "../components";
-import { RootState, useAppDispatch, initCart } from "../redux";
+import { RootState } from "../redux";
 import st from "./ProductPage.module.scss";
 
 function ProductPage() {
-  const dispatch = useAppDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState<ProductData>();
@@ -21,7 +20,6 @@ function ProductPage() {
 
   useEffect(() => {
     window.scrollTo({ behavior: "smooth", top: 0 });
-    dispatch(initCart());
   }, []);
 
   useEffect(() => {

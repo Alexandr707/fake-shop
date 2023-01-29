@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { store } from "./redux/store";
+import { store, useAppDispatch } from "./redux/store";
 import { Provider } from "react-redux";
 import MainPage from "./pages/MainPage";
 import "./index.css";

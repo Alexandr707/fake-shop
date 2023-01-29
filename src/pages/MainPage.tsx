@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 
-import { fetchProducts, RootState, useAppDispatch, initCart } from "../redux";
+import { fetchProducts, RootState, useAppDispatch } from "../redux";
 import { SelectCategorie, Product, ProductLoader } from "../components";
 import { useScrollDown } from "../hooks/useScrollDown";
 import "./MainPage.scss";
@@ -22,7 +22,6 @@ function MainPage() {
   useEffect(() => {
     !products.products.length &&
       dispatch(fetchProducts(import.meta.env.VITE_STOREURL + "/products"));
-    dispatch(initCart());
 
     document.addEventListener("scroll", onScrollHandler);
 
