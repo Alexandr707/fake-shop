@@ -1,6 +1,5 @@
-// import StarSvg from "../../assets/star.svg";
-import { useEffect, useState, MouseEvent, useRef, memo } from "react";
-import lodash from "lodash/fp";
+import { useState, MouseEvent, useRef, memo } from "react";
+// import lodash from "lodash/fp";
 import st from "./RatingStars.module.scss";
 import StarSvg from "./StarSvg";
 
@@ -9,25 +8,23 @@ type Rating = {
 };
 
 function RatingStars({ rating }: Rating) {
-  const [rate, setRate] = useState<number>(0);
   const [mouseRate, setMouseRate] = useState(0);
   const [isRateSelected, setIsRateSelected] = useState<boolean>(false);
   const rateRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setRate(rating);
-  }, [rating]);
-
-  const d = Math.floor(mouseRate || rate);
-  const f = (mouseRate || rate) - d;
-  const ad = 5 - Math.ceil(mouseRate || rate);
+  const d = Math.floor(mouseRate || rating);
+  const f = (mouseRate || rating) - d;
+  const ad = 5 - Math.ceil(mouseRate || rating);
 
   function mauseRateingHandler(e: MouseEvent<HTMLDivElement>) {
     if (rateRef.current) {
       if (e.type === "mousemove" || e.type === "click") {
         const x = getX(e.pageX, rateRef.current);
-        setMouseRate(x);
-        e.type === "click" && setIsRateSelected(true);
+
+        !isRateSelected && setMouseRate(x);
+        e.type === "click" && setIsRateSelected(() => true);
+        e.type === "click" &&
+          console.log("clicked rateselected-> ", isRateSelected);
       }
       if (e.type === "mouseleave" && !isRateSelected) {
         setMouseRate(0);
@@ -35,7 +32,7 @@ function RatingStars({ rating }: Rating) {
     }
   }
 
-  const onMoveRating = lodash.debounce(50, mauseRateingHandler);
+  // const onMoveRating = lodash.debounce(50, mauseRateingHandler);
 
   return (
     <div

@@ -1,0 +1,23 @@
+.notFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  max-width: calc(100vh - 140px);
+  min-height: calc(100vh - 140px);
+  border-radius: 10px;
+  background-color: #ddd;
+  margin: 120px auto;
+
+  h1 {
+    color: darkred;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}

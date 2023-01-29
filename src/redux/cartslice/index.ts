@@ -46,25 +46,24 @@ export const cartSlice = createSlice({
         (el) => el.product.id === action.payload.id
       );
       if (prodCount) {
-        prodCount.count -= 1;
+        if (prodCount.count > 1) {
+          prodCount.count -= 1;
+        } else {
+          state.products = state.products.filter(
+            (pr) => pr.product.id !== action.payload.id
+          );
+        }
       }
       state.total = totalPrice(state.products);
       saveToLs("products", state.products);
     },
     removeProduct(state, action: PayloadAction<ProductData>) {
-      const idx = state.products.findIndex(
-        (p) => p.product.id === action.payload.id
+      state.products = state.products.filter(
+        (pr) => pr.product.id !== action.payload.id
       );
-      if (idx >= 0) {
-        state.products[idx].count > 1
-          ? (state.products[idx].count -= 1)
-          : (state.products = state.products.filter(
-              (p) => p.product.id !== action.payload.id
-            ));
 
-        state.total = totalPrice(state.products);
-        saveToLs("products", state.products);
-      }
+      state.total = totalPrice(state.products);
+      saveToLs("products", state.products);
     },
   },
 });

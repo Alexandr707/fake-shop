@@ -38,7 +38,7 @@
     right: 50%;
     height: 3px;
     overflow: hidden;
-    background: rgb(12, 189, 12);
+    background: #0163fa;
     transition: left 0.4s, right 0.4s;
   }
 
@@ -54,6 +54,11 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      fill: #0163fa;
+    }
   }
 
   .close {

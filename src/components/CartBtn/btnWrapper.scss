@@ -1,0 +1,39 @@
+.addBtn__wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+
+  &-enter {
+    max-width: 0px;
+  }
+  &-enter-active {
+    max-width: 100px;
+    transition: max-width 0.3s;
+  }
+  &-exit {
+    max-width: 100px;
+  }
+  &-exit-active {
+    max-width: 0px;
+    transition: max-width 0.3s;
+  }
+}
+
+@keyframes appearEnter {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100px;
+  }
+}
+@keyframes appearExit {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100px;
+  }
+}

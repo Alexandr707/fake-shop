@@ -2,23 +2,15 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 
-import { fetchProducts } from "./redux/productsSlice";
-import { RootState, useAppDispatch } from "./redux/store";
+import { fetchProducts, RootState, useAppDispatch, initCart } from "../redux";
+import { SelectCategorie, Product, ProductLoader } from "../components";
+import { useScrollDown } from "../hooks/useScrollDown";
+import "./MainPage.scss";
 
-import SelectCategorie from "./components/SelectCategorie/SelectCategorie";
-import Product from "./components/Product/Product";
-import Header from "./components/Header/Header";
-import ProductLoader from "./components/Product/ProductsLoader";
-import { useScrollDown } from "./hooks/useScrollDown";
-import "./App.scss";
-import { initCart } from "./redux/cartslice";
-
-function App() {
+function MainPage() {
   const [isScrollDown, onScrollHandler] = useScrollDown();
   const dispatch = useAppDispatch();
-  const { products, cart, categorie, search } = useSelector(
-    (state: RootState) => state
-  );
+  const { products, search } = useSelector((state: RootState) => state);
 
   let filtredProd =
     search.value.length > 0
@@ -28,7 +20,8 @@ function App() {
       : products.products;
 
   useEffect(() => {
-    dispatch(fetchProducts(import.meta.env.VITE_STOREURL + "/products"));
+    !products.products.length &&
+      dispatch(fetchProducts(import.meta.env.VITE_STOREURL + "/products"));
     dispatch(initCart());
 
     document.addEventListener("scroll", onScrollHandler);
@@ -39,9 +32,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Header />
-
+    <>
       <div className={clsx("sideBar", isScrollDown && "scrolldown")}>
         <SelectCategorie />
       </div>
@@ -53,8 +44,8 @@ function App() {
             filtredProd.map((p) => <Product key={p.id} {...p} />)}
         </div>
       </main>
-    </div>
+    </>
   );
 }
 
-export default App;
+export default MainPage;

@@ -1,0 +1,30 @@
+@use "sass:color";
+
+.cartBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 30px;
+  background-color: #0163fa;
+  transition: all 0.3s;
+  border: none;
+  outline: none !important;
+
+  svg {
+    height: calc(100% - 10px);
+    stroke: white;
+  }
+
+  .vrLine {
+    display: inline-block;
+    width: 2px;
+    height: calc(100% - 10px);
+    margin: auto 10px;
+    background-color: color.adjust(#0163fa, $blackness: 25%);
+  }
+}

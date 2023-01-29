@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useScrollDown } from "../../hooks/useScrollDown";
-import { RootState } from "../../redux/store";
-import SearchInput from "../SearchInput/SearchInput";
+import { RootState } from "../../redux/";
+import { CartBtn, SearchInput } from "..";
 import st from "./Header.module.scss";
 
 function Header({}) {
@@ -20,11 +21,13 @@ function Header({}) {
 
   return (
     <div className={clsx(st.header, isScrollDown && st.scrollDown)}>
-      <div className={st.logo}>
-        <img src="/logo.png" alt="store logo" />
-      </div>
+      <Link to="/">
+        <div className={st.logo}>
+          <img src="/logo.png" alt="store logo" />
+        </div>
+      </Link>
       <SearchInput />
-      <div>total: {totalPrice.toFixed(2)}</div>
+      <CartBtn>{totalPrice}</CartBtn>
     </div>
   );
 }
