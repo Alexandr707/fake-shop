@@ -10,7 +10,7 @@ import {
   subtractProduct,
 } from "../../redux/";
 
-import st from "./Addbtn.module.scss";
+import st from "./AddBtn.module.scss";
 
 export type AddType = {
   product: ProductData;
