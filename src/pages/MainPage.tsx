@@ -37,6 +37,11 @@ function MainPage() {
       </div>
       <main className="main">
         <div className="app__wrapper">
+          {products.status === "error" && (
+            <h2 style={{ textAlign: "center" }}>
+              Failed loading, code: {products.error}
+            </h2>
+          )}
           {products.status === "loading" &&
             new Array(6).fill("").map((al, i) => <ProductLoader key={i} />)}
           {products.status === "loaded" &&

@@ -6,11 +6,13 @@ export type RequestState = "loading" | "loaded" | "error";
 export type ProductSlice = {
   products: ProductData[];
   status: RequestState;
+  error: string | undefined;
 };
 
 const initialState: ProductSlice = {
   products: [],
   status: "loading",
+  error: undefined,
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -42,6 +44,7 @@ export const producstSlice = createSlice({
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.status = "error";
       state.products = [];
+      state.error = action.meta.requestStatus;
     });
   },
 });
