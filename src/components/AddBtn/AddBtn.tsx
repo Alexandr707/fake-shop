@@ -1,13 +1,14 @@
 import clsx from "clsx";
-import { ChangeEvent, memo } from "react";
+import { memo } from "react";
 import { useSelector } from "react-redux";
 import { ProductData } from "../../@types";
 import {
+  RootState,
+  useAppDispatch,
   addProduct,
   removeProduct,
   subtractProduct,
-} from "../../redux/cartslice";
-import { RootState, useAppDispatch } from "../../redux/store";
+} from "../../redux/";
 
 import st from "./Addbtn.module.scss";
 
