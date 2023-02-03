@@ -1,14 +1,20 @@
 import clsx from "clsx";
-import { useState, ChangeEvent, useRef, memo } from "react";
-import { useDispatch } from "react-redux";
+import { useState, ChangeEvent, useRef, memo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux";
 import { clearSearchValue, setSearchValue } from "../../redux/searchSlice";
 import st from "./SearchInput.module.scss";
 
 function SearchInput({}) {
   const dispatch = useDispatch();
+  const serchValue = useSelector((state: RootState) => state.search.value);
   const [inputValue, setInputValue] = useState<string>("");
   const [isFocus, setIsFocus] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setInputValue(serchValue);
+  }, [serchValue]);
 
   function onInputHandler(e: ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);

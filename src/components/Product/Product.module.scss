@@ -27,10 +27,6 @@
     &:hover {
       z-index: 2;
       transform: scale(1.05);
-
-      .descr {
-        // max-height: 400px;
-      }
     }
   }
 
@@ -47,6 +43,7 @@
       height: 100%;
       object-fit: contain;
       transform-origin: center;
+      mix-blend-mode: multiply;
     }
   }
 
@@ -62,11 +59,6 @@
     overflow: hidden;
     transition: max-height 0.3s;
     // transition-delay: 0.1s;
-
-    &:hover {
-      // z-index: 20;
-      // height: auto;
-    }
   }
 
   .price {
