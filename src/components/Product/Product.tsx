@@ -33,7 +33,7 @@ function Product({
         </Link>
         <p className={st.descr}>{description}</p>
         <div className={st.price}>
-          Цена: <span className={st.cost}>{price}&nbsp;$</span>
+          Price: <span className={st.cost}>{price}&nbsp;$</span>
           <AddBtn
             product={{
               id,
