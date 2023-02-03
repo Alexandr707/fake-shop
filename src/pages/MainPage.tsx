@@ -43,7 +43,7 @@ function MainPage() {
             </h2>
           )}
           {products.status === "loading" &&
-            new Array(6).fill("").map((al, i) => <ProductLoader key={i} />)}
+            new Array(8).fill("").map((al, i) => <ProductLoader key={i} />)}
           {products.status === "loaded" &&
             filtredProd.map((p) => <Product key={p.id} {...p} />)}
         </div>
